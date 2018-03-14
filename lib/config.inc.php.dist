@@ -1,0 +1,114 @@
+<?php
+/**
+* $Id: config.inc.php 246 2006-11-30 11:01:07Z pello $
+* phpframework - v1.0 -  http://www.cuatrovientos.org
+* Pello Xabier Altadill Izura - Instituto Cuatrovientos 
+* config.inc
+* Configuracion global de la aplicacion. 
+* Aquí se definen DataSources, listas de control de acceso,
+* localizacion de ficheros log, etc...
+*/
+
+// Aplicacion
+$conf['app'] = 'aplicacion';
+
+// path
+$conf['root'] = 'http://localhost/gomenda';
+$path = $conf['root'];
+
+global $path;
+
+
+// Debug: vuelca informacion a pantalla
+$conf['debug'] = 0;
+
+// Nivel de log
+// 0 : deshabilitado
+// 1 : habilitado
+$conf['log_level'] = 0;
+
+// Fichero log
+$conf['log_file'] = './var/aplicacion.log.xml';
+
+// Paginacion 
+$conf['paginacion'] = 10;
+
+// ACL por IP
+$conf['acl'] = array(
+				'192.168.1.200',
+				'192.168.1.233',
+				'192.168.1.175'
+				);
+
+//
+/************** DataSources , Origenes de datos ******************/
+// Puedes definir aqui los origenes de datos. Crea un definicion como
+// la de los ejemplos.
+// Tipos de BBDD admitidas: mysql, pgsql
+
+// DS1: mysql 
+$datasources['mysql_1']['ds_description'] = 'Base de datos Local';
+$datasources['mysql_1']['ds_name'] = 'gomendadb';
+$datasources['mysql_1']['ds_type'] = 'mysql';
+$datasources['mysql_1']['ds_host'] = 'localhost';
+$datasources['mysql_1']['ds_port'] = '3306';
+$datasources['mysql_1']['ds_username'] = 'root';
+$datasources['mysql_1']['ds_password'] = 'root';
+
+// DS2: postgresql 
+$datasources['pgsql_1']['ds_description'] = 'Base de datos PGSQL';
+$datasources['pgsql_1']['ds_name'] = 'ejemplo';
+$datasources['pgsql_1']['ds_type'] = 'pgsql';
+$datasources['pgsql_1']['ds_host'] = 'localhost';
+$datasources['pgsql_1']['ds_port'] = '5432';
+$datasources['pgsql_1']['ds_username'] = 'ejemplo';
+$datasources['pgsql_1']['ds_password'] = 'ejemplo';
+
+// Definimos la BBDD por defecto
+$defaultdb = "mysql_1";
+
+/***********************************************************************/
+// CIFRADO : algoritmo de cifrado que se usa en la aplicacion          //
+// disponibles: plaintext, blowfish, base64
+$cypher = "plaintext";
+$cypher_key = "7.D2w-sU3";
+$autologin_key = "Ue-5$y6Q";
+
+/**************************************************pg_dump  -U centrodeestudiosdbadmin centrodeestudiosdb > /var/www/intranet/sql/centrodeestudios.sql
+********************/
+// IDIOMA y LOCALE: segun el codigo se usa uno u otro fichero de lenguaje
+// disponibles: es_es, es_eu
+$language = "es_es";
+// el locale debe estar generado en el sistema
+$locale = "es_ES.ISO-8859-1";
+
+/**********************************************************************/
+// PLANTILLAS: segun el codigo se usa una plantilla u otra
+$template_dir = "";
+
+/***********************************************************************/
+//  ACTIONS : acciones definidas, nombres que mapean paginas concretas //
+// Nota: las que empiezan por ap_ precisan una sesion valida
+$ACTIONS['default'] = './templates/default.tmplt.php';
+$ACTIONS['estilo'] = './css/estiloak.php';
+$ACTIONS['pagina_test'] = './templates/default.tmplt.php?page=login';
+$ACTIONS['verentrada'] = './templates/default.tmplt.php?page=entrada';
+$ACTIONS['listarportag'] = './templates/default.tmplt.php?page=portag';
+$ACTIONS['busqueda'] = './templates/default.tmplt.php?page=busqueda';
+$ACTIONS['crearentrada'] = './templates/default.tmplt.php?page=crearentrada';
+$ACTIONS['ap_editarentrada'] = './templates/default.tmplt.php?page=editarentrada';
+$ACTIONS['ap_eliminarentrada'] = './templates/default.tmplt.php?page=entrada&ac=eliminar';
+$ACTIONS['votar'] = './templates/votar.tmplt.php';
+$ACTIONS['registro'] = './templates/default.tmplt.php?page=registro';
+$ACTIONS['wtf'] = './templates/default.tmplt.php?page=wtf';
+//$ACTIONS['autologin'] = './templates/autologin.tmplt.php';
+$ACTIONS['rss2'] = './templates/rss2.tmplt.php';
+$ACTIONS['ap_inicio'] = './templates/default.frames.tmplt.php';
+$ACTIONS['logout'] = './lib/logout.inc.php';
+$ACTIONS['login'] = './templates/default.tmplt.php?page=login';
+$ACTIONS['comprobar_login'] = './lib/control_login.inc.php';
+$ACTIONS['imagen'] = 'imagen.php';
+$ACTIONS['usuario'] = './templates/default.tmplt.php?page=usuario';
+$ACTIONS['avatar'] = './templates/avatar.tmplt.php';
+
+?>

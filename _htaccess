@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^recomendacion/([0-9]+)   ?verentrada&id=$1
